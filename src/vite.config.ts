@@ -14,7 +14,8 @@ export default ({mode}) => {
         server: {
             allowedHosts: true,
             hmr: {
-                path: '/hmr'
+                path: '/hmr',
+                clientPort: 443
             }
         },
         plugins: [react()],
