@@ -14,7 +14,7 @@ export function useAclRole(id: string) {
 export function useAclRoles(params?: ListResourceParams) {
     return useQuery({
         queryKey: ["acl-roles", params],
-        queryFn: () => AclRolesService.list(params),
+        queryFn: () => AclRolesService.search(params),
         placeholderData: (previousData) => previousData,
     });
 }

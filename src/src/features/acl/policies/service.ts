@@ -5,7 +5,7 @@ import {IAclPolicyInDTO, IAclPoliciesPagedResponseDTO} from "@app/features/acl/p
 import {IAclPolicy, IAclPoliciesPaged} from "@app/features/acl/policies/models";
 
 export const AclPoliciesService = {
-    async list(req?: ListResourceParams): Promise<IAclPoliciesPaged> {
+    async search(req?: ListResourceParams): Promise<IAclPoliciesPaged> {
         const params = req !== undefined ? {
             filterModel: req.filterModel,
             sortModel: req.sortModel,
@@ -13,7 +13,7 @@ export const AclPoliciesService = {
         } : {};
 
         const response = await getApi().post<IAclPoliciesPagedResponseDTO>(
-            "/acl/policies", params
+            "/acl/policies/search", params
         );
 
         return policiesPagedFromDTO(response.data);
@@ -26,7 +26,7 @@ export const AclPoliciesService = {
 
     async create(payload: Omit<IAclPolicy, "id">): Promise<IAclPolicy> {
         const dtoPayload = policyToDTO(payload as IAclPolicy);
-        const response = await getApi().post<IAclPolicyInDTO>("/acl/policies/create", dtoPayload);
+        const response = await getApi().post<IAclPolicyInDTO>("/acl/policies", dtoPayload);
         return policyFromDTO(response.data);
     },
 

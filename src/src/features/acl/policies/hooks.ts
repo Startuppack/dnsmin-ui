@@ -14,7 +14,7 @@ export function useAclPolicy(id: string) {
 export function useAclPolicies(params?: ListResourceParams) {
     return useQuery({
         queryKey: ["acl-policies", params],
-        queryFn: () => AclPoliciesService.list(params),
+        queryFn: () => AclPoliciesService.search(params),
         placeholderData: (previousData) => previousData,
     });
 }

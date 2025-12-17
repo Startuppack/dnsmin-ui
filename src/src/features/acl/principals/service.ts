@@ -5,7 +5,7 @@ import {IAclPrincipalInDTO, IAclPrincipalsPagedResponseDTO} from "@app/features/
 import {IAclPrincipal, IAclPrincipalsPaged} from "@app/features/acl/principals/models";
 
 export const AclPrincipalsService = {
-    async list(req?: ListResourceParams): Promise<IAclPrincipalsPaged> {
+    async search(req?: ListResourceParams): Promise<IAclPrincipalsPaged> {
         const params = req !== undefined ? {
             filterModel: req.filterModel,
             sortModel: req.sortModel,
@@ -13,7 +13,7 @@ export const AclPrincipalsService = {
         } : {};
 
         const response = await getApi().post<IAclPrincipalsPagedResponseDTO>(
-            "/acl/principals", params
+            "/acl/principals/search", params
         );
 
         return principalsPagedFromDTO(response.data);
@@ -26,7 +26,7 @@ export const AclPrincipalsService = {
 
     async create(payload: Omit<IAclPrincipal, "id">): Promise<IAclPrincipal> {
         const dtoPayload = principalToDTO(payload as IAclPrincipal);
-        const response = await getApi().post<IAclPrincipalInDTO>("/acl/principals/create", dtoPayload);
+        const response = await getApi().post<IAclPrincipalInDTO>("/acl/principals", dtoPayload);
         return principalFromDTO(response.data);
     },
 

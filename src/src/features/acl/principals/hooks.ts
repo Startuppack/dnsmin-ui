@@ -14,7 +14,7 @@ export function useAclPrincipal(id: string) {
 export function useAclPrincipals(params?: ListResourceParams) {
     return useQuery({
         queryKey: ["acl-principals", params],
-        queryFn: () => AclPrincipalsService.list(params),
+        queryFn: () => AclPrincipalsService.search(params),
         placeholderData: (previousData) => previousData,
     });
 }

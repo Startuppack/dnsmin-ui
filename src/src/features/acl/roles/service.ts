@@ -5,7 +5,7 @@ import {IAclRoleInDTO, IAclRolesPagedResponseDTO} from "@app/features/acl/roles/
 import {IAclRole, IAclRolesPaged} from "@app/features/acl/roles/models";
 
 export const AclRolesService = {
-    async list(req?: ListResourceParams): Promise<IAclRolesPaged> {
+    async search(req?: ListResourceParams): Promise<IAclRolesPaged> {
         const params = req !== undefined ? {
             filterModel: req.filterModel,
             sortModel: req.sortModel,
@@ -13,7 +13,7 @@ export const AclRolesService = {
         } : {};
 
         const response = await getApi().post<IAclRolesPagedResponseDTO>(
-            "/acl/roles", params
+            "/acl/roles/search", params
         );
 
         return rolesPagedFromDTO(response.data);
@@ -26,7 +26,7 @@ export const AclRolesService = {
 
     async create(payload: Omit<IAclRole, "id">): Promise<IAclRole> {
         const dtoPayload = roleToDTO(payload as IAclRole);
-        const response = await getApi().post<IAclRoleInDTO>("/acl/roles/create", dtoPayload);
+        const response = await getApi().post<IAclRoleInDTO>("/acl/roles", dtoPayload);
         return roleFromDTO(response.data);
     },
 
