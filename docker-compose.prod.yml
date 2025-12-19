@@ -10,13 +10,10 @@ services:
       dockerfile: ./deploy/docker/Dockerfile
     env_file: .env
     volumes:
-      - ./src:/srv/app
       - ./deploy/docker/nginx.conf:/etc/nginx/sites-enabled/default.conf
       - ./var/log/nginx:/var/log/nginx
     ports:
       - "${DNSMIN_SERVICE_IP}:8001:8000"
-    networks:
-      - dnsmin
     healthcheck:
       test: [ 'CMD', 'curl', '-f', 'http://dnsmin_web:8000' ]
       interval: 30s
@@ -24,8 +21,3 @@ services:
       retries: 3
       start_period: 15s
       start_interval: 5s
-
-networks:
- dnsmin:
-    external: true
-    name: dnsmin

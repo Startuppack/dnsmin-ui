@@ -1,0 +1,4 @@
+var/
+.env
+src/dist/config.json
+src/public/config.json
