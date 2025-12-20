@@ -1,10 +1,12 @@
 import {ModelBase} from "@app/types/models";
+import {IZoneSyncPolicy} from "@app/features/sync/models";
 
 export interface AZoneServer extends ModelBase {
     zoneId: string;
     serverId: string;
     tenantId?: string | null;
     state: string;
+    syncPolicy: IZoneSyncPolicy;
     createdAt?: string | null;
     updatedAt?: string | null;
 }

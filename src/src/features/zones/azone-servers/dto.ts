@@ -1,10 +1,12 @@
 import {BaseDTO} from "@app/types/dto";
+import {IZoneSyncPolicyDTO} from "@app/features/sync/dto";
 
 export interface AZoneServerInDTO extends BaseDTO {
     zone_id: string;
     server_id: string;
     tenant_id: string | null;
     state: string;
+    sync_policy: IZoneSyncPolicyDTO;
     created_at: string;
     updated_at: string | null;
 }
@@ -14,6 +16,7 @@ export interface AZoneServerOutDTO extends BaseDTO {
     server_id: string;
     tenant_id?: string | null;
     state: string;
+    sync_policy: IZoneSyncPolicyDTO;
 }
 
 export interface AZoneServersPagedResponseDTO extends BaseDTO {

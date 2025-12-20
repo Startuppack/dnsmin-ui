@@ -1,5 +1,6 @@
 import {IServerInDTO, IServerOutDTO, IServersPagedResponseDTO} from "@app/features/servers/servers/dto";
 import {IServer, IServersPaged} from "@app/features/servers/servers/models";
+import {serverSyncPolicyFromDTO, serverSyncPolicyToDTO} from "@app/features/sync/converters";
 
 export function serverFromDTO(dto: IServerInDTO): IServer {
     return {
@@ -12,6 +13,7 @@ export function serverFromDTO(dto: IServerInDTO): IServer {
         apiUrl: dto.api_url,
         apiKey: dto.api_key,
         shared: dto.shared,
+        syncPolicy: serverSyncPolicyFromDTO(dto.sync_policy),
         createdAt: dto.created_at,
         updatedAt: dto.updated_at,
     }
@@ -28,6 +30,7 @@ export function serverToDTO(server: IServer): IServerOutDTO {
         api_url: server.apiUrl,
         api_key: server.apiKey,
         shared: server.shared,
+        sync_policy: serverSyncPolicyToDTO(server.syncPolicy),
     }
 }
 

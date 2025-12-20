@@ -1,4 +1,5 @@
 import {ModelBase} from "@app/types/models";
+import {IServerSyncPolicy} from "@app/features/sync/models";
 
 export interface Server extends ModelBase {
     id?: string;
@@ -10,6 +11,7 @@ export interface Server extends ModelBase {
     apiUrl: string;
     apiKey: string;
     shared: boolean;
+    syncPolicy: IServerSyncPolicy;
     createdAt?: string | null;
     updatedAt?: string | null;
 }

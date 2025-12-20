@@ -1,4 +1,5 @@
 import {BaseDTO} from "@app/types/dto";
+import {IServerSyncPolicyDTO} from "@app/features/sync/dto";
 
 export interface ServerInDTO extends BaseDTO {
     id: string;
@@ -10,6 +11,7 @@ export interface ServerInDTO extends BaseDTO {
     api_url: string;
     api_key: string;
     shared: boolean;
+    sync_policy: IServerSyncPolicyDTO;
     created_at: string;
     updated_at: string | null;
 }
@@ -24,6 +26,7 @@ export interface ServerOutDTO extends BaseDTO {
     api_url: string;
     api_key: string;
     shared: boolean;
+    sync_policy: IServerSyncPolicyDTO;
 }
 
 export interface ServersPagedResponseDTO extends BaseDTO {
