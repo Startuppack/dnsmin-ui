@@ -6,7 +6,7 @@ export interface AZoneServerInDTO extends BaseDTO {
     server_id: string;
     tenant_id: string | null;
     state: string;
-    sync_policy: IZoneSyncPolicyDTO;
+    sync_policy: IZoneSyncPolicyDTO | null;
     created_at: string;
     updated_at: string | null;
 }
@@ -16,7 +16,7 @@ export interface AZoneServerOutDTO extends BaseDTO {
     server_id: string;
     tenant_id?: string | null;
     state: string;
-    sync_policy: IZoneSyncPolicyDTO;
+    sync_policy: IZoneSyncPolicyDTO | null;
 }
 
 export interface AZoneServersPagedResponseDTO extends BaseDTO {

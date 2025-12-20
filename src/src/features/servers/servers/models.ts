@@ -11,7 +11,7 @@ export interface Server extends ModelBase {
     apiUrl: string;
     apiKey: string;
     shared: boolean;
-    syncPolicy: IServerSyncPolicy;
+    syncPolicy: IServerSyncPolicy | null;
     createdAt?: string | null;
     updatedAt?: string | null;
 }

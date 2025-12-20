@@ -11,7 +11,7 @@ export interface ServerInDTO extends BaseDTO {
     api_url: string;
     api_key: string;
     shared: boolean;
-    sync_policy: IServerSyncPolicyDTO;
+    sync_policy: IServerSyncPolicyDTO | null;
     created_at: string;
     updated_at: string | null;
 }
@@ -26,7 +26,7 @@ export interface ServerOutDTO extends BaseDTO {
     api_url: string;
     api_key: string;
     shared: boolean;
-    sync_policy: IServerSyncPolicyDTO;
+    sync_policy: IServerSyncPolicyDTO | null;
 }
 
 export interface ServersPagedResponseDTO extends BaseDTO {

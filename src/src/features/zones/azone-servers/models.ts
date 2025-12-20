@@ -6,7 +6,7 @@ export interface AZoneServer extends ModelBase {
     serverId: string;
     tenantId?: string | null;
     state: string;
-    syncPolicy: IZoneSyncPolicy;
+    syncPolicy: IZoneSyncPolicy | null;
     createdAt?: string | null;
     updatedAt?: string | null;
 }
