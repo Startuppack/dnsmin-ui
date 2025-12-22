@@ -63,6 +63,7 @@ const ListView = ({basePath}: ViewProps) => {
         {field: 'dnssec', headerName: 'DNSSEC', width: 150},
         {field: 'catalog', headerName: 'Catalog', width: 150},
         {field: 'shared', headerName: 'Shared', width: 150},
+        {field: 'purged', headerName: 'Purged', width: 150},
         {field: 'createdAt', headerName: 'Created', width: 175},
         {field: 'updatedAt', headerName: 'Updated', width: 175},
         {
