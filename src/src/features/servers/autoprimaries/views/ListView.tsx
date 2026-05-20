@@ -1,9 +1,7 @@
 import * as React from "react";
 import {useState} from "react";
-import {useNavigate, useParams} from "react-router-dom";
-import {Button, Grid} from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+import {useParams} from "react-router-dom";
+import {Grid} from "@mui/material";
 import {
     DataGridPro,
     GridFilterModel,
@@ -11,7 +9,6 @@ import {
     GridPaginationModel,
     GridLogicOperator,
     GridColDef,
-    GridActionsCellItem,
 } from "@mui/x-data-grid-pro";
 import {useServerAutoPrimaries} from "@app/features/servers/autoprimaries/hooks";
 import PageHeader from "@components/PageHeader";
@@ -23,7 +20,6 @@ interface ViewProps {
 }
 
 const ListView = ({basePath}: ViewProps) => {
-    const navigate = useNavigate();
     const {serverId} = useParams();
 
     const [filterModel, setFilterModel] = useState<GridFilterModel>({
@@ -42,18 +38,6 @@ const ListView = ({basePath}: ViewProps) => {
         return filterModel.items.length > 0 || (filterModel.quickFilterValues?.length ?? 0) > 0;
     }, [filterModel]);
 
-    const openCreate = () => {
-        navigate(`${basePath}/create`);
-    };
-
-    const openUpdate = (id: string) => {
-        navigate(`${basePath}/${id}/update`);
-    };
-
-    const openDelete = (id: string) => {
-        navigate(`${basePath}/${id}/delete`);
-    };
-
     const columns: readonly GridColDef<any>[] = [
         {field: 'id', headerName: 'Auto-Primary ID', width: 300},
         {field: 'serverId', headerName: 'Server ID', width: 300},
@@ -62,28 +46,6 @@ const ListView = ({basePath}: ViewProps) => {
         {field: 'account', headerName: 'Account', width: 300},
         {field: 'createdAt', headerName: 'Created', width: 175},
         {field: 'updatedAt', headerName: 'Updated', width: 175},
-        {
-            field: 'actions',
-            type: 'actions',
-            headerName: 'Actions',
-            width: 100,
-            getActions: (params) => [
-                <GridActionsCellItem
-                    key="edit"
-                    icon={<EditIcon/>}
-                    label="Edit"
-                    onClick={() => openUpdate(params.row.id)}
-                    showInMenu
-                />,
-                <GridActionsCellItem
-                    key="delete"
-                    icon={<DeleteIcon/>}
-                    label="Delete"
-                    onClick={() => openDelete(params.row.id)}
-                    showInMenu
-                />,
-            ],
-        },
     ];
 
     return (
@@ -101,10 +63,6 @@ const ListView = ({basePath}: ViewProps) => {
                             </Grid>
                         )}
                     </Grid>
-                </Grid>
-                <Grid size={{sm: 12, md: 3, lg: 2}} paddingY={2} display="flex" justifyContent="flex-end"
-                      alignItems="flex-end">
-                    <Button variant="contained" onClick={() => openCreate()}>Create Auto-Primary</Button>
                 </Grid>
                 <Grid size={12}>
                     <DataGridPro

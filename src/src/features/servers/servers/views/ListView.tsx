@@ -1,9 +1,8 @@
 import * as React from "react";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {Button, Grid} from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+import {Grid} from "@mui/material";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import {
     DataGridPro,
     GridFilterModel,
@@ -41,16 +40,8 @@ const ListView = ({basePath}: ViewProps) => {
         return filterModel.items.length > 0 || (filterModel.quickFilterValues?.length ?? 0) > 0;
     }, [filterModel]);
 
-    const openCreate = () => {
-        navigate(`${basePath}/create`);
-    };
-
-    const openUpdate = (id: string) => {
-        navigate(`${basePath}/${id}/update`);
-    };
-
-    const openDelete = (id: string) => {
-        navigate(`${basePath}/${id}/delete`);
+    const openAutoPrimaries = (id: string) => {
+        navigate(`${basePath}/${id}/auto-primaries`);
     };
 
     const columns: readonly GridColDef<any>[] = [
@@ -71,17 +62,10 @@ const ListView = ({basePath}: ViewProps) => {
             width: 100,
             getActions: (params) => [
                 <GridActionsCellItem
-                    key="edit"
-                    icon={<EditIcon/>}
-                    label="Edit"
-                    onClick={() => openUpdate(params.row.id)}
-                    showInMenu
-                />,
-                <GridActionsCellItem
-                    key="delete"
-                    icon={<DeleteIcon/>}
-                    label="Delete"
-                    onClick={() => openDelete(params.row.id)}
+                    key="auto-primaries"
+                    icon={<AccountTreeIcon/>}
+                    label="Auto-Primaries"
+                    onClick={() => openAutoPrimaries(params.row.id)}
                     showInMenu
                 />,
             ],
@@ -103,10 +87,6 @@ const ListView = ({basePath}: ViewProps) => {
                             </Grid>
                         )}
                     </Grid>
-                </Grid>
-                <Grid size={{sm: 12, md: 3, lg: 2}} paddingY={2} display="flex" justifyContent="flex-end"
-                      alignItems="flex-end">
-                    <Button variant="contained" onClick={() => openCreate()}>Create Server</Button>
                 </Grid>
                 <Grid size={12}>
                     <DataGridPro
